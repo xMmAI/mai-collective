@@ -1,0 +1,195 @@
+{
+  "generated": "2026-05-27T12:00:00.000Z",
+  "totalSkills": 9,
+  "alwaysLoadedCount": 1,
+  "deferredCount": 8,
+  "skills": {
+    "core": {
+      "name": "CORE",
+      "path": "CORE/SKILL.md",
+      "fullDescription": "Personal AI Infrastructure core. AUTO-LOADS at session start. USE WHEN any session begins OR user asks about identity, response format, contacts, stack preferences.",
+      "triggers": [
+        "any",
+        "session",
+        "begins",
+        "user",
+        "asks",
+        "about",
+        "identity",
+        "response",
+        "format",
+        "contacts",
+        "stack",
+        "preferences"
+      ],
+      "workflows": [],
+      "tier": "always"
+    },
+    "prompting": {
+      "name": "Prompting",
+      "path": "Prompting/SKILL.md",
+      "fullDescription": "Meta-prompting system for dynamic prompt generation using templates, standards, and patterns. USE WHEN meta-prompting, template generation, prompt optimization, or programmatic prompt composition.",
+      "triggers": [
+        "meta-prompting",
+        "template",
+        "generation",
+        "prompt",
+        "optimization",
+        "programmatic",
+        "composition"
+      ],
+      "workflows": [],
+      "tier": "deferred"
+    },
+    "art": {
+      "name": "Art",
+      "path": "Art/SKILL.md",
+      "fullDescription": "Visual content generation with Excalidraw hand-drawn aesthetic. USE WHEN user wants diagrams, visualizations, comics, or editorial illustrations.",
+      "triggers": [
+        "user",
+        "wants",
+        "diagrams",
+        "visualizations",
+        "comics",
+        "editorial",
+        "illustrations"
+      ],
+      "workflows": [],
+      "tier": "deferred"
+    },
+    "createskill": {
+      "name": "CreateSkill",
+      "path": "CreateSkill/SKILL.md",
+      "fullDescription": "Create and validate skills. USE WHEN create skill, new skill, skill structure, canonicalize. SkillSearch('createskill') for docs.",
+      "triggers": [
+        "create",
+        "skill",
+        "new",
+        "structure",
+        "canonicalize"
+      ],
+      "workflows": [],
+      "tier": "deferred"
+    },
+    "agents": {
+      "name": "Agents",
+      "path": "Agents/SKILL.md",
+      "fullDescription": "Dynamic agent composition and management system. USE WHEN user says create custom agents, spin up custom agents, specialized agents, OR asks for agent personalities, available traits, agent voices. Handles custom agent creation, personality assignment, voice mapping, and parallel agent orchestration.",
+      "triggers": [
+        "user",
+        "says",
+        "create",
+        "custom",
+        "agents",
+        "spin",
+        "specialized",
+        "asks",
+        "for",
+        "agent",
+        "personalities",
+        "available",
+        "traits",
+        "voices"
+      ],
+      "workflows": [],
+      "tier": "deferred"
+    },
+    "seobrief": {
+      "name": "SeoBrief",
+      "path": "SeoBrief/SKILL.md",
+      "fullDescription": "Proactive SEO and AEO requirements brief generated BEFORE building or writing begins. USE WHEN starting a new page, new feature, new content type, or new blog post — before any code design, wireframe, or draft. Produces a structured brief for architects, developers, designers, and content writers so SEO and AEO are requirements, not afterthoughts.",
+      "triggers": [
+        "new",
+        "page",
+        "feature",
+        "planning",
+        "before",
+        "building",
+        "brief",
+        "requirements",
+        "seo",
+        "aeo",
+        "architecture",
+        "start",
+        "design",
+        "content",
+        "blog",
+        "post"
+      ],
+      "workflows": [],
+      "tier": "deferred"
+    },
+    "seocheck": {
+      "name": "SeoCheck",
+      "path": "SeoCheck/SKILL.md",
+      "fullDescription": "Pre-ship SEO AND AEO compliance audit for any web project. USE WHEN finishing a new page, reviewing content before publishing, or running a pre-deploy check. AEO (Answer Engine Optimisation) is checked equally alongside technical SEO. Reads CLAUDE.md to discover project-specific brand rules, private routes, and schema requirements.",
+      "triggers": [
+        "seo",
+        "aeo",
+        "check",
+        "audit",
+        "pre-ship",
+        "pre-deploy",
+        "publishing",
+        "compliance",
+        "schema",
+        "robots",
+        "canonical",
+        "answer",
+        "engine",
+        "optimisation"
+      ],
+      "workflows": [],
+      "tier": "deferred"
+    },
+    "diagnose": {
+      "name": "Diagnose",
+      "path": "Diagnose/SKILL.md",
+      "fullDescription": "Structured 6-phase debugging methodology for hard bugs and performance regressions. USE WHEN user reports a bug, something is broken/failing/throwing/crashing, describes unexpected behavior, mentions a regression, or says \"diagnose this\" / \"debug this\" / \"why is this failing\" / \"fix this bug\".",
+      "triggers": [
+        "bug",
+        "debug",
+        "diagnose",
+        "broken",
+        "failing",
+        "throwing",
+        "crashing",
+        "error",
+        "regression",
+        "performance",
+        "fix",
+        "unexpected",
+        "behavior",
+        "not working"
+      ],
+      "workflows": [
+        "Workflows/Diagnose.md"
+      ],
+      "tier": "deferred"
+    },
+    "prototype": {
+      "name": "Prototype",
+      "path": "Prototype/SKILL.md",
+      "fullDescription": "Throwaway code that answers a specific design question before committing to production. USE WHEN user wants to validate logic, test a state model, explore UI design options, try out an idea, or says \"prototype this\" / \"test this idea\" / \"which design\" / \"before I build this\" / \"let's try\".",
+      "triggers": [
+        "prototype",
+        "throwaway",
+        "validate",
+        "test idea",
+        "which design",
+        "state model",
+        "ui variations",
+        "explore",
+        "try out",
+        "before I build",
+        "let's try",
+        "design options"
+      ],
+      "workflows": [
+        "Workflows/Logic.md",
+        "Workflows/UI.md"
+      ],
+      "tier": "deferred"
+    }
+  }
+}

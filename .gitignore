@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+bun.lock
+
+# Personal / sensitive — never commit
+skills/CORE/Contacts.md
+skills/CORE/CoreStack.md
+skills/CORE/SecurityProtocols.md
+config/user.yaml
+
+# Local overrides
+*.local
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.cursor/
+.vscode/
+*.swp

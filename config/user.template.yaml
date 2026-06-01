@@ -1,0 +1,12 @@
+# MAI Collective — User Configuration
+# Copy this file to config/user.yaml and fill in your values.
+# config/user.yaml is gitignored and never committed.
+
+# Your name (used as $USER_NAME in CORE identity)
+USER_NAME: "Your Name"
+
+# Your AI assistant's name (used as $DA in CORE identity)
+DA: "Kai"
+
+# Your local timezone (e.g. "America/Los_Angeles", "Europe/London")
+TIME_ZONE: "America/Los_Angeles"
