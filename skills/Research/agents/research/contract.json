@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Agent Contract",
+  "description": "Input/output schema for the Research Agent (Anna). Output must conform to agents/research/templates/research_output.md. Includes competitor analysis, keyword research, and user question research from Reddit/forums/Quora to inform H2 structure.",
+  "version": "2.0.0",
+  "agent_id": "research",
+  "input": {
+    "type": "object",
+    "required": ["topic"],
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "Content topic or target keyword for research"
+      },
+      "campaign_id": {
+        "type": "string",
+        "description": "Optional identifier for the research output header"
+      },
+      "client_name": {
+        "type": "string",
+        "description": "Optional client or project name for the research output header"
+      },
+      "date": {
+        "type": "string",
+        "format": "date",
+        "description": "Date for research output header (YYYY-MM-DD). Defaults to run date if omitted."
+      },
+      "source_materials": {
+        "type": "array",
+        "description": "Optional: URLs, file paths, or text snippets to use as source material",
+        "items": { "type": "string" }
+      }
+    },
+    "additionalProperties": false
+  },
+  "output": {
+    "artifact": "research_output.md",
+    "template": "agents/research/templates/research_output.md",
+    "format": "markdown",
+    "required_sections": [
+      "Executive Summary",
+      "Research Materials Summary",
+      "1. Search Intent Analysis",
+      "2. User Question Research (Reddit, Forums, Quora)",
+      "3. Competitor Analysis",
+      "4. Keyword Research",
+      "5. Angle Gap Analysis",
+      "6. Content Structure Analysis",
+      "7. Multimedia & Formatting Insights",
+      "8. Backlink & Authority Insights",
+      "9. Freshness & Update Frequency",
+      "10. AEO Analysis (Answer Engine Optimization)",
+      "11. GEO Analysis (Generative Engine Optimization)",
+      "12. Additional Insights",
+      "13. Research Sources & Tools Used",
+      "Next Steps for Writer"
+    ],
+    "description": "Research output is for blog writing — SEO, AEO, and GEO optimized. Must follow agents/research/templates/research_output.md. Section 10 (AEO) must include featured snippet opportunities, PAA questions, voice search queries, and schema recommendations. Section 11 (GEO) must include AI coverage check, entity clarity assessment, fact density requirements, E-E-A-T signals, and citation-worthiness recommendations."
+  }
+}

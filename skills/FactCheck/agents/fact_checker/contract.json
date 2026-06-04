@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fact Checker Agent Contract",
+  "description": "Input/output schema for the Fact Checker Agent (Veritas). Validates research_output.md citations, sources, and factual accuracy. Output must conform to agents/fact_checker/templates/fact_check_feedback.json.",
+  "version": "1.0.0",
+  "agent_id": "fact_checker",
+  "input": {
+    "type": "object",
+    "required": ["research_output"],
+    "properties": {
+      "research_output": {
+        "type": "string",
+        "description": "Content of research_output.md (the research to validate)"
+      },
+      "campaign_id": {
+        "type": "string",
+        "description": "Optional identifier for the fact check header"
+      },
+      "client_name": {
+        "type": "string",
+        "description": "Optional client name"
+      },
+      "knowledge_base_path": {
+        "type": "string",
+        "description": "Optional: path to knowledge base for cross-referencing (defaults to knowledge_base/ in mai-collective)"
+      },
+      "date": {
+        "type": "string",
+        "format": "date",
+        "description": "Date for fact check (YYYY-MM-DD)"
+      }
+    },
+    "additionalProperties": false
+  },
+  "output": {
+    "artifact": "fact_check_feedback.json",
+    "template": "agents/fact_checker/templates/fact_check_feedback.json",
+    "format": "json",
+    "required_fields": [
+      "overall_status",
+      "summary",
+      "sources_checked",
+      "sources_verified",
+      "sources_with_issues",
+      "validation_results",
+      "issues",
+      "feedback_for_research"
+    ],
+    "description": "Fact check feedback must follow agents/fact_checker/templates/fact_check_feedback.json. Include: overall status (PASS/NEEDS_REVISION/CRITICAL_ISSUES); source counts; validation results per source type (web, PDF, knowledge base, academic); issues list with location, severity, description, suggested fix; actionable feedback for the Research Agent to address critical issues."
+  }
+}

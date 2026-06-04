@@ -1,0 +1,191 @@
+{
+  "campaign": "[Campaign ID/Name]",
+  "client": "[Client Name]",
+  "topic": "[Topic/Keyword]",
+  "date": "[YYYY-MM-DD]",
+  "fact_checker": "[Agent Name/Version]",
+  "research_version": "[e.g., v1.0]",
+  
+  "overall_status": "[PASS / NEEDS_REVISION / CRITICAL_ISSUES]",
+  "summary": "[1-2 sentence overall assessment of research quality and validation results]",
+  
+  "sources_checked": "[Total number of sources validated]",
+  "sources_verified": "[Number fully verified and accurate]",
+  "sources_with_issues": "[Number with warnings or critical issues]",
+  
+  "validation_results": {
+    "web_sources": {
+      "checked": "[Number]",
+      "verified": "[Number]",
+      "issues_found": "[Number]",
+      "checks_performed": [
+        "URL accessibility",
+        "Content match verification",
+        "Quote accuracy",
+        "Domain credibility",
+        "Access date validation",
+        "Archive.org fallback (if needed)"
+      ],
+      "details": [
+        {
+          "source_id": "[Source 1, Source 2, etc.]",
+          "title": "[Source title]",
+          "url": "[URL]",
+          "status": "verified | warning | critical_issue",
+          "checks": {
+            "url_accessible": true,
+            "http_status": 200,
+            "content_matches": true,
+            "quotes_accurate": true,
+            "domain_credible": true,
+            "ssl_valid": true
+          },
+          "notes": "[Any observations or concerns]"
+        }
+      ]
+    },
+    
+    "pdf_sources": {
+      "checked": "[Number]",
+      "verified": "[Number]",
+      "issues_found": "[Number]",
+      "checks_performed": [
+        "File accessibility",
+        "Page number validation",
+        "Quote accuracy",
+        "Metadata verification",
+        "Document credibility"
+      ],
+      "details": [
+        {
+          "source_id": "[Source ID]",
+          "title": "[Document title]",
+          "file_path": "[Path to PDF in knowledge/ or research materials]",
+          "status": "verified | warning | critical_issue",
+          "checks": {
+            "file_accessible": true,
+            "pages_valid": true,
+            "quotes_accurate": true,
+            "metadata_matches": true,
+            "credibility_high": true
+          },
+          "notes": "[Any observations]"
+        }
+      ]
+    },
+    
+    "knowledge_base_checks": {
+      "global_knowledge_consulted": true,
+      "client_knowledge_consulted": true,
+      "conflicts_found": "[Number]",
+      "details": [
+        {
+          "claim": "[Claim from research]",
+          "research_source": "[Source that made the claim]",
+          "knowledge_base_source": "[Path to conflicting knowledge base file]",
+          "conflict_description": "[What conflicts and why]",
+          "severity": "critical | warning | info",
+          "resolution": "[Which should be trusted: knowledge base is typically source of truth for client facts]"
+        }
+      ]
+    },
+    
+    "academic_sources": {
+      "checked": "[Number]",
+      "verified": "[Number]",
+      "issues_found": "[Number]",
+      "checks_performed": [
+        "DOI validation",
+        "Peer-review status",
+        "Retraction check",
+        "Author credentials",
+        "Citation format"
+      ],
+      "details": [
+        {
+          "source_id": "[Source ID]",
+          "title": "[Paper title]",
+          "doi": "[DOI if applicable]",
+          "status": "verified | warning | critical_issue",
+          "checks": {
+            "doi_resolves": true,
+            "peer_reviewed": true,
+            "not_retracted": true,
+            "author_credible": true,
+            "citation_complete": true
+          },
+          "notes": "[Any observations]"
+        }
+      ]
+    },
+    
+    "citation_quality": {
+      "score": "[0-10]",
+      "assessment": "[Overall citation quality: excellent / good / needs_improvement / poor]",
+      "missing_metadata": [
+        "[e.g., Source 5: missing publication date]",
+        "[e.g., Source 8: page numbers not specified]"
+      ],
+      "incomplete_citations": [
+        "[e.g., Source 3: URL incomplete]",
+        "[e.g., Source 11: author not specified]"
+      ],
+      "formatting_issues": [
+        "[e.g., Inconsistent citation style]"
+      ]
+    },
+    
+    "cross_validation": {
+      "internal_contradictions": [
+        {
+          "claim_1": "[First claim]",
+          "source_1": "[Source]",
+          "claim_2": "[Contradictory claim]",
+          "source_2": "[Different source]",
+          "severity": "critical | warning",
+          "resolution_needed": "[What Research Agent should clarify]"
+        }
+      ],
+      "unsupported_claims": [
+        {
+          "claim": "[Claim made in research]",
+          "location": "[Where in research_output.md]",
+          "issue": "[No citation or weak source]",
+          "severity": "critical | warning",
+          "suggested_fix": "[Add citation or remove claim]"
+        }
+      ]
+    }
+  },
+  
+  "issues": [
+    {
+      "issue_id": "1",
+      "source_id": "[Source 3, Source 7, etc.]",
+      "location": "[Research Materials Summary, Section 3, etc.]",
+      "severity": "critical | warning | info",
+      "type": "broken_url | quote_mismatch | missing_citation | unreliable_source | knowledge_base_conflict | internal_contradiction",
+      "description": "[Clear description of the problem]",
+      "evidence": {
+        "expected": "[What research claimed]",
+        "actual": "[What fact checker found]"
+      },
+      "suggested_fix": "[Specific action Research Agent should take]",
+      "automated_fix_available": false,
+      "automated_fix_details": "[If tool found alternative, e.g., Archive.org snapshot]"
+    }
+  ],
+  
+  "feedback_for_research": [
+    "[Action item 1: Re-verify Source 3 URL - page not found, check Archive.org]",
+    "[Action item 2: Correct quote on page 12 of Source 7 - actual text differs]",
+    "[Action item 3: Resolve conflict between Source 10 and client knowledge base regarding Product X launch date]",
+    "[Action item 4: Add citation for claim in Section 4 about market size - currently unsupported]"
+  ],
+  
+  "next_steps": {
+    "if_pass": "Proceed to Strategy Agent with validated research",
+    "if_needs_revision": "Research Agent should address warnings; may proceed if time-sensitive but issues should be logged",
+    "if_critical_issues": "Research Agent MUST address critical issues before proceeding. Loop back with feedback_for_research items."
+  }
+}

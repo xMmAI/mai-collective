@@ -27,12 +27,14 @@ With MAI installed:
 
 MAI is built on top of Claude Code, but it also works inside **Cursor**, a popular AI-powered code editor. If you prefer Cursor over Claude Code's terminal interface, MAI's skills and commands work there too.
 
-| Feature | Claude Code | Cursor |
-|---|---|---|
-| Skills (auto-loaded) | Yes | Yes |
-| Slash commands | Yes | Yes |
-| Session hooks (background automation) | Yes | Partial: hooks run via terminal |
-| Voice announcements | Yes (Mac only) | Yes (Mac only) |
+
+| Feature                               | Claude Code    | Cursor                          |
+| ------------------------------------- | -------------- | ------------------------------- |
+| Skills (auto-loaded)                  | Yes            | Yes                             |
+| Slash commands                        | Yes            | Yes                             |
+| Session hooks (background automation) | Yes            | Partial: hooks run via terminal |
+| Voice announcements                   | Yes (Mac only) | Yes (Mac only)                  |
+
 
 For Cursor users: install MAI using the terminal steps below, then open your project in Cursor. Your slash commands and skills will be available inside the Cursor AI chat panel.
 
@@ -173,22 +175,27 @@ For content posts: checks the database row for completeness (meta title, meta de
 MAI is useful for anyone who builds or writes professionally with AI assistance.
 
 **For developers and engineers:**
+
+- After using /cto, use /write-prd to generate prd
+- Use `/create-plan` with the PRD to plan your build
+- Start generating code with /execute
 - Structured bug investigation with `/diagnose`
-- Code review before merging with `/review`
+- Code review before merging with `/review, then /peer-review with a different AI to help review`
 - Test-driven development with `/tdd`
 - SEO audit before shipping a page with `/seo-check`
 - Rapid prototyping with `/prototype`
 - Security review with a dynamic agent using security and adversarial traits
 
 **For writers and content creators:**
+
 - Use `/zoom-out` to step back and assess whether your content achieves its goal
 - Use `/grill-me` to stress-test your argument before publishing
-- Use `/create-plan` to outline a long-form piece before writing
 - Use `/seo-brief` to get keyword, schema, and AEO requirements before drafting
 - Use `/seo-check` to audit a finished post before it goes live
 - Use agents to run parallel research on different angles of a topic
 
 **For product and operations teams:**
+
 - Document processes with `/document`
 - Create structured handoffs with `/handoff`
 - Turn session insights into GitHub issues with `/create-issue`
@@ -215,10 +222,9 @@ These protections are always on. You do not need to configure anything.
 You need two free tools installed on your computer.
 
 1. **Claude Code**: the AI assistant this framework runs on
-   Download: [claude.ai/code](https://claude.ai/code)
-
+  Download: [claude.ai/code](https://claude.ai/code)
 2. **Bun**: a fast JavaScript runtime that handles the background automation
-   Download: [bun.sh](https://bun.sh) — takes under a minute
+  Download: [bun.sh](https://bun.sh) — takes under a minute
 
 Mac users: both tools work out of the box. Windows support requires WSL (Windows Subsystem for Linux). See the Claude Code documentation for Windows setup.
 
@@ -229,21 +235,25 @@ Mac users: both tools work out of the box. Windows support requires WSL (Windows
 Open your **Terminal** app (Mac: press `Cmd + Space`, type "Terminal", press Enter) and run these commands one at a time.
 
 **Step 1: Download MAI onto your computer**
+
 ```bash
 git clone https://github.com/xMmAI/mai-collective.git ~/mai-collective
 ```
 
 **Step 2: Move into the MAI folder**
+
 ```bash
 cd ~/mai-collective
 ```
 
 **Step 3: Run the installer**
+
 ```bash
 ./install.sh
 ```
 
 The installer will ask you three questions:
+
 - Your name (e.g. `Tammy`)
 - What you would like to call your AI assistant (default is `Kai`)
 - Your timezone (e.g. `America/Los_Angeles` or `Australia/Melbourne`)
@@ -320,22 +330,24 @@ mai-collective/
 
 ## Slash commands: full list
 
-| Command | When to use it |
-|---|---|
-| `/zoom-out` | You have been deep in a problem and want to step back and see the bigger picture |
-| `/grill-me` | You have an idea and want your AI to challenge it with tough questions |
-| `/prototype` | You want to quickly test an idea before building it properly |
-| `/diagnose` | Something is broken and you want a structured investigation |
-| `/create-plan` | You want to plan out a project or feature before starting |
-| `/explore` | You have opened a new codebase and want a guided tour |
-| `/execute` | You have a plan and want to work through it step by step |
-| `/review` | You want your AI to review the code you have written |
-| `/tdd` | You want to write tests before writing code |
-| `/peer-review` | You want a second opinion on work you have done |
-| `/handoff` | You are passing a project to someone else and need a clear summary |
-| `/document` | You want to update or generate documentation |
-| `/create-issue` | You want to log a bug or task as a GitHub issue |
-| `/learning-opp` | You want your AI to surface what you could learn from the current task |
+
+| Command         | When to use it                                                                   |
+| --------------- | -------------------------------------------------------------------------------- |
+| `/zoom-out`     | You have been deep in a problem and want to step back and see the bigger picture |
+| `/grill-me`     | You have an idea and want your AI to challenge it with tough questions           |
+| `/prototype`    | You want to quickly test an idea before building it properly                     |
+| `/diagnose`     | Something is broken and you want a structured investigation                      |
+| `/create-plan`  | You want to plan out a project or feature before starting                        |
+| `/explore`      | You have opened a new codebase and want a guided tour                            |
+| `/execute`      | You have a plan and want to work through it step by step                         |
+| `/review`       | You want your AI to review the code you have written                             |
+| `/tdd`          | You want to write tests before writing code                                      |
+| `/peer-review`  | You want a second opinion on work you have done                                  |
+| `/handoff`      | You are passing a project to someone else and need a clear summary               |
+| `/document`     | You want to update or generate documentation                                     |
+| `/create-issue` | You want to log a bug or task as a GitHub issue                                  |
+| `/learning-opp` | You want your AI to surface what you could learn from the current task           |
+
 
 ---
 
@@ -365,13 +377,15 @@ No coding required. Both are written in plain Markdown.
 
 ## Private files: what never gets shared
 
-| File | What it contains |
-|---|---|
-| `config/user.yaml` | Your name, AI name, timezone |
-| `skills/CORE/Contacts.md` | Your personal contacts |
-| `skills/CORE/CoreStack.md` | Your preferred tools and stack |
-| `skills/CORE/SecurityProtocols.md` | Your personal security rules |
-| `history/` | Your session logs |
+
+| File                               | What it contains               |
+| ---------------------------------- | ------------------------------ |
+| `config/user.yaml`                 | Your name, AI name, timezone   |
+| `skills/CORE/Contacts.md`          | Your personal contacts         |
+| `skills/CORE/CoreStack.md`         | Your preferred tools and stack |
+| `skills/CORE/SecurityProtocols.md` | Your personal security rules   |
+| `history/`                         | Your session logs              |
+
 
 ---
 
@@ -388,7 +402,9 @@ Open a new Cursor window and try again. Cursor reads commands on startup.
 
 **I want to undo the install**
 Run this in Terminal to restore your original commands folder:
+
 ```bash
 rm ~/.claude/commands && mv ~/.claude/commands.bak ~/.claude/commands
 ```
+
 Then remove the MAI lines from `~/.claude/settings.json`.
