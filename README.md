@@ -8,6 +8,20 @@ You do not need to know how to code to install and use MAI. This guide will walk
 
 ---
 
+## Who is this for?
+
+MAI is built for anyone who works with AI daily and wants more control, consistency, and capability than a standard chatbot gives them.
+
+**Developers and engineers** use it to investigate bugs systematically, review code before merging, plan features before building, write tests first, and automate repetitive tasks that would otherwise require re-explaining context every session.
+
+**Writers and content creators** use it to research topics before drafting, audit content for SEO and AI search visibility, strip AI-sounding language from drafts, stress-test arguments before publishing, and maintain a consistent voice across everything they produce.
+
+**Operations, product, and business professionals** use it to document processes, generate structured handoffs, turn meeting notes into tracked issues, and produce architecture diagrams without needing a designer.
+
+If you use AI regularly and find yourself re-explaining who you are, what you prefer, or how you want something done at the start of every session — MAI is for you.
+
+---
+
 ## What does it actually do?
 
 Without MAI, your AI assistant starts every session fresh. It does not know your name, your preferences, or how you like to work.
@@ -162,11 +176,33 @@ Use this before designing, wiring, or writing any public-facing page. It gives e
 
 ### SeoCheck
 
-A pre-ship audit that checks both technical SEO and AEO compliance for a finished page or content post. Both are weighted equally because a page that ranks in search but does not get cited by AI engines (Perplexity, ChatGPT, Google AI Overviews) is half-optimised.
+A pre-ship audit that checks both technical SEO and AEO compliance for a finished page or content post.
 
 For code files: checks canonical URL, robots directives, Open Graph images, schema types, brand name consistency, and whether FAQ schema answers are self-contained enough to be extracted as AI answer snippets.
 
 For content posts: checks the database row for completeness (meta title, meta description, keywords, FAQ JSON, images), then reads the body and checks that the first paragraph directly answers the core question, that headings are phrased as real questions, that there are specific attributable facts (not generic claims), and that the content links to the site's primary action pages. Also checks for em dashes (a common style fault that causes rendering issues in some AI output renderers).
+
+### Research
+
+Runs Anna, a blog writing research specialist, who produces a complete research document to inform a blog post. Every output covers three layers:
+
+**SEO** — competitor gap analysis, keyword research (primary, secondary, long-tail, semantic), angle gaps, and content structure recommendations based on what the top-ranking pages include and miss.
+
+**AEO (Answer Engine Optimisation)** — featured snippet opportunities, People Also Ask questions extracted from the SERP, voice search phrasing, schema markup recommendations (FAQ, HowTo, Article), and which sections of the post should be formatted as direct 40-60 word Q&A answers.
+
+**GEO (Generative Engine Optimisation)** — whether Perplexity, ChatGPT, or Google AI Overviews currently cover the topic and which sources they cite, entity clarity gaps, fact density requirements, E-E-A-T signals the post needs, and a citation-worthiness checklist so the post gets picked up by AI systems.
+
+Anna works within hard credit limits: 12 web searches maximum, 5 competitor URLs, 3 forum searches. She stops as soon as each section has enough data, writes it, and moves on. She does not loop. Use `/research` before drafting.
+
+### FactCheck
+
+Runs Veritas, a fact-checking specialist, to validate the citations, sources, and factual claims in a research document before it goes to a writer. Veritas navigates to every URL, extracts text, and compares it against what the research claims the source says. Issues are flagged by severity: critical (blocks drafting until fixed), warning (proceed with notes), or info (style and completeness). Output is a structured JSON report with per-source verdicts and a prioritised fix list. Use `/fact-check` after `/research`.
+
+### Anti-AI Voice Editor
+
+A voice editor that rewrites AI-sounding text so it reads like a clear, specific human. It removes a hard-ban list of over 40 AI vocabulary words (delve, showcase, leverage, robust, tapestry, and more), rewrites twelve specific AI sentence patterns (the "In a world where..." opener, the "Most people vs. the few who win" split, the "Stop X, start Y" switch, and others), and strips common AI writing habits including fake suspense, vague moral lessons, hollow transitions, repeated sentence rhythm, and inflated adjectives.
+
+Paste any text after typing `/anti-ai` and receive only the rewritten version — no notes, no list of changes. The full rule source and copywriting reference are in `knowledge_base/`.
 
 ---
 
@@ -192,6 +228,9 @@ MAI is useful for anyone who builds or writes professionally with AI assistance.
 - Use `/grill-me` to stress-test your argument before publishing
 - Use `/seo-brief` to get keyword, schema, and AEO requirements before drafting
 - Use `/seo-check` to audit a finished post before it goes live
+- Use `/research` to run Anna, the blog research specialist, for SEO, AEO, and GEO-ready research before drafting
+- Use `/fact-check` to validate research citations and sources before writing
+- Use `/anti-ai` to strip AI voice patterns from a finished draft
 - Use agents to run parallel research on different angles of a topic
 
 **For product and operations teams:**
@@ -205,15 +244,32 @@ MAI is useful for anyone who builds or writes professionally with AI assistance.
 
 ## Security
 
-MAI includes built-in protections that run automatically:
+MAI includes four layers of built-in protection that run automatically. You do not need to configure anything.
 
-**Secrets protection:** The `block-env-file.ts` hook prevents your AI from reading `.env` files or any file that looks like it contains passwords, API keys, or credentials. This runs before every file read.
+**Your passwords and API keys are protected.** Before your AI reads any file, MAI checks whether it looks like a credentials file. If it does, the read is blocked. Your AI cannot accidentally expose your secrets to itself or log them anywhere.
 
-**Command validation:** The `security-validator.ts` hook scans every shell command your AI wants to run before it executes. It flags commands that look destructive or dangerous and asks for confirmation first.
+**Risky commands require your approval.** Before your AI runs any system command on your computer, MAI checks whether that command looks destructive or irreversible. Commands like deleting folders, force-pushing code, or overwriting data are flagged and paused until you explicitly confirm. Your AI cannot take drastic actions without your say-so.
 
-**Gitignored private files:** Your personal settings, contacts, and session history are listed in `.gitignore` and never uploaded to GitHub.
+**Your personal files never leave your machine.** Your name, preferences, contacts, and session history are stored locally and are excluded from GitHub uploads by default. Even if you share or publish your MAI setup, your personal configuration stays private.
 
-These protections are always on. You do not need to configure anything.
+**Your writing is checked for AI patterns before it goes public.** The `/anti-ai` command and the knowledge base writing rules are baked into the system so content produced with MAI assistance can be reviewed for AI voice patterns before publishing — protecting your professional reputation.
+
+---
+
+## Your data and privacy
+
+**MAI runs on your computer.** There are no MAI servers. The framework is a set of files that lives in a folder on your machine and shapes how your AI assistant behaves.
+
+**Where your conversations go.** When you type a message, it travels directly from your computer to Anthropic's API — the company that makes Claude. Anthropic's privacy policy governs what happens to that data. You can read it in full at [anthropic.com/legal/privacy](https://www.anthropic.com/legal/privacy).
+
+Key points from Anthropic's policy:
+- Conversations deleted from Claude.ai are removed from their systems within 30 days
+- You can opt out of your data being used to train future models through your account settings
+- API usage (which is how Claude Code works) has different terms than the consumer Claude.ai product — check Anthropic's privacy centre for the current details
+
+**What MAI itself stores.** MAI saves a log of your sessions in a `history/` folder on your computer. This is local only and is never uploaded to GitHub or any external service. You can delete it at any time.
+
+**Sensitive information.** Do not share passwords, API keys, personal data belonging to other people, or confidential business information you are not authorised to process through a third-party AI service. If you are unsure whether a type of data is appropriate to use with an AI tool, check with your organisation's IT or legal team before proceeding.
 
 ---
 
@@ -309,6 +365,18 @@ mai-collective/
 |   |   +-- Workflows/UI.md
 |   +-- SeoBrief/           <- Full SEO + AEO requirements brief before you build
 |   +-- SeoCheck/           <- Pre-ship SEO + AEO compliance audit
+|   +-- Research/           <- Blog writing research agent (Anna) — SEO, AEO, GEO
+|   |   +-- agents/research/system_prompt.md
+|   |   +-- agents/research/contract.json
+|   |   +-- agents/research/templates/research_output.md
+|   +-- FactCheck/          <- Fact-checking agent (Veritas) — validates citations and sources
+|   |   +-- agents/fact_checker/system_prompt.md
+|   |   +-- agents/fact_checker/contract.json
+|   |   +-- agents/fact_checker/templates/fact_check_feedback.json
+|
++-- knowledge_base/         <- Writing reference files (never committed if private)
+|   +-- anti_ai_writingStyle.md  <- Anti-AI voice rules + Wikipedia reference
+|   +-- copy_writing.md          <- Copywriting masters framework (Hopkins, Ogilvy, etc.)
 |
 +-- hooks/                  <- Background automation (runs silently each session)
 |   +-- initialize-session.ts       <- Sets up the session environment
@@ -333,20 +401,23 @@ mai-collective/
 
 | Command         | When to use it                                                                   |
 | --------------- | -------------------------------------------------------------------------------- |
-| `/zoom-out`     | You have been deep in a problem and want to step back and see the bigger picture |
-| `/grill-me`     | You have an idea and want your AI to challenge it with tough questions           |
-| `/prototype`    | You want to quickly test an idea before building it properly                     |
-| `/diagnose`     | Something is broken and you want a structured investigation                      |
-| `/create-plan`  | You want to plan out a project or feature before starting                        |
-| `/explore`      | You have opened a new codebase and want a guided tour                            |
-| `/execute`      | You have a plan and want to work through it step by step                         |
-| `/review`       | You want your AI to review the code you have written                             |
-| `/tdd`          | You want to write tests before writing code                                      |
-| `/peer-review`  | You want a second opinion on work you have done                                  |
-| `/handoff`      | You are passing a project to someone else and need a clear summary               |
-| `/document`     | You want to update or generate documentation                                     |
-| `/create-issue` | You want to log a bug or task as a GitHub issue                                  |
-| `/learning-opp` | You want your AI to surface what you could learn from the current task           |
+| `/zoom-out`     | You have been deep in a problem and want to step back and see the bigger picture  |
+| `/grill-me`     | You have an idea and want your AI to challenge it with tough questions            |
+| `/prototype`    | You want to quickly test an idea before building it properly                      |
+| `/diagnose`     | Something is broken and you want a structured investigation                       |
+| `/create-plan`  | You want to plan out a project or feature before starting                         |
+| `/explore`      | You have opened a new codebase and want a guided tour                             |
+| `/execute`      | You have a plan and want to work through it step by step                          |
+| `/review`       | You want your AI to review the code you have written                              |
+| `/tdd`          | You want to write tests before writing code                                       |
+| `/peer-review`  | You want a second opinion on work you have done                                   |
+| `/handoff`      | You are passing a project to someone else and need a clear summary                |
+| `/document`     | You want to update or generate documentation                                      |
+| `/create-issue` | You want to log a bug or task as a GitHub issue                                   |
+| `/learning-opp` | You want your AI to surface what you could learn from the current task            |
+| `/research`     | Research a topic for a blog post — covers SEO, AEO, and GEO in one document      |
+| `/fact-check`   | Validate citations and sources in a research document before drafting             |
+| `/anti-ai`      | Rewrite AI-sounding text so it reads like a clear, specific human                 |
 
 
 ---
