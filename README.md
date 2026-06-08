@@ -263,6 +263,7 @@ MAI includes four layers of built-in protection that run automatically. You do n
 **Where your conversations go.** When you type a message, it travels directly from your computer to Anthropic's API — the company that makes Claude. Anthropic's privacy policy governs what happens to that data. You can read it in full at [anthropic.com/legal/privacy](https://www.anthropic.com/legal/privacy).
 
 Key points from Anthropic's policy:
+
 - Conversations deleted from Claude.ai are removed from their systems within 30 days
 - You can opt out of your data being used to train future models through your account settings
 - API usage (which is how Claude Code works) has different terms than the consumer Claude.ai product — check Anthropic's privacy centre for the current details
@@ -401,23 +402,23 @@ mai-collective/
 
 | Command         | When to use it                                                                   |
 | --------------- | -------------------------------------------------------------------------------- |
-| `/zoom-out`     | You have been deep in a problem and want to step back and see the bigger picture  |
-| `/grill-me`     | You have an idea and want your AI to challenge it with tough questions            |
-| `/prototype`    | You want to quickly test an idea before building it properly                      |
-| `/diagnose`     | Something is broken and you want a structured investigation                       |
-| `/create-plan`  | You want to plan out a project or feature before starting                         |
-| `/explore`      | You have opened a new codebase and want a guided tour                             |
-| `/execute`      | You have a plan and want to work through it step by step                          |
-| `/review`       | You want your AI to review the code you have written                              |
-| `/tdd`          | You want to write tests before writing code                                       |
-| `/peer-review`  | You want a second opinion on work you have done                                   |
-| `/handoff`      | You are passing a project to someone else and need a clear summary                |
-| `/document`     | You want to update or generate documentation                                      |
-| `/create-issue` | You want to log a bug or task as a GitHub issue                                   |
-| `/learning-opp` | You want your AI to surface what you could learn from the current task            |
+| `/zoom-out`     | You have been deep in a problem and want to step back and see the bigger picture |
+| `/grill-me`     | You have an idea and want your AI to challenge it with tough questions           |
+| `/prototype`    | You want to quickly test an idea before building it properly                     |
+| `/diagnose`     | Something is broken and you want a structured investigation                      |
+| `/create-plan`  | You want to plan out a project or feature before starting                        |
+| `/explore`      | You have opened a new codebase and want a guided tour                            |
+| `/execute`      | You have a plan and want to work through it step by step                         |
+| `/review`       | You want your AI to review the code you have written                             |
+| `/tdd`          | You want to write tests before writing code                                      |
+| `/peer-review`  | You want a second opinion on work you have done                                  |
+| `/handoff`      | You are passing a project to someone else and need a clear summary               |
+| `/document`     | You want to update or generate documentation                                     |
+| `/create-issue` | You want to log a bug or task as a GitHub issue                                  |
+| `/learning-opp` | You want your AI to surface what you could learn from the current task           |
 | `/research`     | Research a topic for a blog post — covers SEO, AEO, and GEO in one document      |
-| `/fact-check`   | Validate citations and sources in a research document before drafting             |
-| `/anti-ai`      | Rewrite AI-sounding text so it reads like a clear, specific human                 |
+| `/fact-check`   | Validate citations and sources in a research document before drafting            |
+| `/anti-ai`      | Rewrite AI-sounding text so it reads like a clear, specific human                |
 
 
 ---
@@ -428,13 +429,32 @@ Your personal settings live in `config/user.yaml`. Open it in any text editor an
 
 ```yaml
 USER_NAME: "Your Name"
-DA: "Kai"
+DA: "M.AI"
 TIME_ZONE: "America/Los_Angeles"
 ```
 
 This file is private and never uploaded to GitHub.
 
+Have a play around with creating a skill, and using slash commands. Then when you are ready to personalise it even further to meet you specific requirements to your roles and responsibilities, open a fresh claude terminal: 
+
+```yaml
+What is your name? 
+# it should respond with the name you gave it
+
+What skills do you have, list them all? 
+# you should see the list of skills 
+
+# To personalised:
+  I want to be personalised further for my role as a [ input job title ] for [company], understand the requirements to excel in this position. I want you to understand, evaluate, synthesis, and ask me questions to truely grasps what its needed, then recommend knowledge based, architecture to improve your system for me.
+
+#or
+
+❯ i want to personalise you further to my roles and responsbilitlies as a [ role and industry ]. First, tell me what skills and agents i have, then recommend updated knowledged based, ask me questions if you need to recommend the bests setup.
+```
+
 ---
+
+Claude will work you through its recommendation. Think of it as a your partner, chat with it so that it can fully understand. 
 
 ## Adding your own commands and skills
 
