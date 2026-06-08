@@ -75,7 +75,7 @@ ENDJSON
 )
 
 # Use bun to merge settings (safe JSON manipulation)
-bun eval "
+bun -e "
 const fs = require('fs');
 const settings = JSON.parse(fs.readFileSync('$SETTINGS', 'utf8'));
 settings.env = settings.env || {};
